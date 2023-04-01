@@ -1,5 +1,6 @@
 package com.driver.controllers;
-import com.driver.services.impl.UserServiceImpl;
+import com.driver.Entity.User;
+import com.driver.Service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,14 @@ public class UserController {
     }
 
     @PutMapping("/subscribe")
-    public void subscribe(@RequestParam Integer userId, @RequestParam Integer serviceProviderId){
+    public void subscribe(@RequestParam Integer userId, @RequestParam Integer serviceProviderId) throws Exception {
         //subscribe to the serviceProvider by adding it to the list of providers and return updated User
-        User user = userService.subscribe(userId, serviceProviderId);
+        User user;
+        try{
+            user = userService.subscribe(userId, serviceProviderId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
     }
 }
