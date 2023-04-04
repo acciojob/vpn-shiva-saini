@@ -1,9 +1,9 @@
-package com.driver.Service.Impl;
+package com.driver.services.Impl;
 
 import com.driver.Entity.Country;
 import com.driver.Entity.ServiceProvider;
 import com.driver.Entity.User;
-import com.driver.Service.UserService;
+import com.driver.services.UserService;
 import com.driver.model.CountryName;
 import com.driver.repository.CountryRepository;
 import com.driver.repository.ServiceProviderRepository;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+
 @Service
 public class UserServiceImpl implements UserService {
 

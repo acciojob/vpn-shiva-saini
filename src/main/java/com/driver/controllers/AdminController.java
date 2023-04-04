@@ -2,7 +2,7 @@ package com.driver.controllers;
 
 import com.driver.Entity.Admin;
 import com.driver.Entity.ServiceProvider;
-import com.driver.Service.AdminService;
+import com.driver.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
