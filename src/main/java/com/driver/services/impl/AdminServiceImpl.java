@@ -1,8 +1,8 @@
 package com.driver.services.impl;
 
-import com.driver.Entity.Admin;
-import com.driver.Entity.Country;
-import com.driver.Entity.ServiceProvider;
+import com.driver.model.Admin;
+import com.driver.model.Country;
+import com.driver.model.ServiceProvider;
 import com.driver.services.AdminService;
 import com.driver.model.CountryName;
 import com.driver.repository.AdminRepository;

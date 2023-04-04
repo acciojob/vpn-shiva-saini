@@ -1,6 +1,4 @@
-package com.driver.Entity;
-
-import com.driver.model.CountryName;
+package com.driver.model;
 
 import javax.persistence.*;
 

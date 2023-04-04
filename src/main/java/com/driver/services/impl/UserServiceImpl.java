@@ -1,8 +1,8 @@
 package com.driver.services.impl;
 
-import com.driver.Entity.Country;
-import com.driver.Entity.ServiceProvider;
-import com.driver.Entity.User;
+import com.driver.model.Country;
+import com.driver.model.ServiceProvider;
+import com.driver.model.User;
 import com.driver.services.UserService;
 import com.driver.model.CountryName;
 import com.driver.repository.CountryRepository;

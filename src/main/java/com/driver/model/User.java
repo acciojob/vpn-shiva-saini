@@ -1,6 +1,8 @@
-package com.driver.Entity;
+package com.driver.model;
 
-import com.driver.model.CountryName;
+import com.driver.model.Connection;
+import com.driver.model.Country;
+import com.driver.model.ServiceProvider;
 
 import javax.persistence.*;
 import java.util.ArrayList;
