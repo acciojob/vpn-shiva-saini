@@ -10,6 +10,9 @@ import com.driver.repository.ServiceProviderRepository;
 import com.driver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+import java.util.UUID;
+
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -20,25 +23,34 @@ public class UserServiceImpl implements UserService {
     CountryRepository countryRepository3;
 
     @Override
-    public User register(String username, String password, String countryName){
+    public User register(String username, String password, String countryName) throws Exception {
         CountryName countryName1 = null;
-        if(countryName == "IND"){
+        if(countryName.equalsIgnoreCase("IND")){
             countryName1 = CountryName.IND;
-        }else if(countryName == "USA"){
+        }else if(countryName.equalsIgnoreCase("USA")){
             countryName1 = CountryName.USA;
-        }else if(countryName == "AUS"){
+        }else if(countryName.equalsIgnoreCase("AUS")){
             countryName1 = CountryName.AUS;
-        }else if(countryName == "CHI"){
+        }else if(countryName.equalsIgnoreCase("CHI")){
             countryName1 = CountryName.CHI;
-        }else if(countryName == "JPN"){
+        }else if(countryName.equalsIgnoreCase("JPN")){
             countryName1 = CountryName.JPN;
+        }else{
+            throw new Exception("Country not found");
         }
         Country country = new Country(countryName1,countryName1.toCode());
         User user = new User(username,password);
         user.setCountry(country);
+        user.setConnected(false);
+        user.setMaskedIp("");
+        country.setUser(user);
+        user.setCountry(country);
         country.setServiceProvider(null);
+        user = userRepository3.save(user);
+        user.setOriginalIp(new String(user.getCountry().getCode()+"."+user.getId()));
         countryRepository3.save(country);
-        userRepository3.save(user);
+        user = userRepository3.save(user);
+
         return user;
     }
 
@@ -58,7 +70,13 @@ public class UserServiceImpl implements UserService {
             throw new Exception(e.getMessage());
         }
 
+        List<ServiceProvider> serviceProviderList = user.getServiceProviderList();
+        List<User> userList = serviceProvider.getUserList();
         serviceProvider.getUserList().add(user);
+        serviceProviderList.add(serviceProvider);
+        user.setServiceProviderList(serviceProviderList);
+        userList.add(user);
+        serviceProvider.setUserList(userList);
         serviceProviderRepository3.save(serviceProvider);
 
        return user;

@@ -15,14 +15,15 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> registerAdmin(@RequestParam String username, @RequestParam String password){
+
+    public ResponseEntity<Void> registerAdmin(@RequestParam String username, @RequestParam String password) {
         //create an admin and return
         Admin admin = adminService.register(username, password);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/addProvider")
-    public ResponseEntity<Void> addServiceProvider(@RequestParam int adminId, @RequestParam String providerName){
+    public ResponseEntity<Void> addServiceProvider(@RequestParam int adminId, @RequestParam String providerName) throws Exception {
         //add a serviceProvider under the admin and return updated admin
         Admin admin = adminService.addServiceProvider(adminId, providerName);
         return new ResponseEntity<>(HttpStatus.OK);

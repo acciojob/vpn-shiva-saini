@@ -15,7 +15,7 @@ public class Connection {
     @JoinColumn
     ServiceProvider serviceProvider;
 
-    public Connection(User user) {
+    public Connection() {
     }
 
     public int getId() {
